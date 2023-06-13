@@ -1,13 +1,25 @@
+'use client'
+import { useState } from 'react'
 import Image from 'next/image'
 import img1 from "@/app/img1.svg"
 import img2 from "@/app/img-mob.svg"
 import Form from '@/components/Form'
+import Success from '@/components/Success'
 
 
 
 export default function Home() {
+  
+  const [email, setEmail] = useState('');
+  const [finish, setFinish] = useState(false)
   return (
-    <main className='font-roboto font-medium text-lg lg:flex lg:gap-8 lg:place-content-center lg:place-items-center lg:min-h-screen'>
+    <>
+    {finish ? 
+    
+      <Success email={email} setFinish={setFinish} setEmail={setEmail}/>
+      :
+
+    <main className=' font-roboto font-medium text-lg lg:flex lg:gap-8 lg:place-content-center lg:place-items-center lg:min-h-screen  '>
       <picture className='block md:overflow-hidden md:max-h-96 md:rounded-b-3xl lg:hidden'>
         <Image className='w-full ' src={img2} alt='Mobile img'/>
 
@@ -22,11 +34,13 @@ export default function Home() {
               <li>Measuring to ensure updates are a success</li>
               <li>And much more</li>
             </ul>
-            <Form />
+            <Form email={email} setEmail={setEmail} setFinish={setFinish} finish={finish}/>
           </div>
         </div>
         <Image className='hidden lg:block' src={img1} alt='newsletter'/>
       </div>
     </main>
+    }
+    </>
   )
 }
