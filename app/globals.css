@@ -3,50 +3,83 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 
+*{
+  box-sizing: border-box;
+}
 html{
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
   color: #36384e;
 }
+
 h1{
   color: #242742;
   
 }
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+
 @layer base {
-  input{
+  
+  input[type="email"]{
+    @apply font-semibold mt-2;
+
+  }
+}
+
+@layer components{
+  .list{
+    @apply py-2;
+  }
+  .list li{
+    @apply pb-1.5 pl-7;
+    background: no-repeat url('icon-list.svg') ;
+  }
+  .invalid-txt:valid{
+    display: none;
+  }
+
+  .inp-email{
+    @apply block w-full py-4 px-6 rounded-md md:max-w-lg border transition-colors duration-200 placeholder:text-slate-300 focus-visible:outline-none ;
+  }
+  .inp{
     display: block;
     width: 100%;
+    @apply md:max-w-lg;
     padding: 1rem 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
   }
-  input[type="email"]{
+  .inp[type="email"]{
     background-color: hsl(0, 0%, 100%);
-    border: 1px solid hsl(0, 0%, 80%);
-    border-radius: 0.25rem;
+    border: 1px solid #cccccc;
     transition: border-color 0.2s ease-in-out;
   }
-  input[type="submit"]{
+  .inp[type="email"]::placeholder{
+    color: #cccccc;
+  }
+  .inp[type="email"]:focus-visible{
+    border-color: #151727;
+    outline: none;
+    
+  }
+  .inp[type="submit"]{
     background-color: #242742;
     color: hsl(0, 0%, 100%);
     border: none;
-    border-radius: 0.25rem;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
+    @apply lg:hover:bg-gradient-to-r lg:hover:from-pink-600 lg:hover:to-orange-600
+  }
+}
+@media screen and (max-width: 1440px) and (min-width:1025px){
+  body{
+    background-color: #242742;
+  }
+  main>div{
+    background-color: white;
+  }
+  .lg-mx{
+    max-width: 420px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
-body {
-  background-color: hsl(234, 29%, 20%);
-}
