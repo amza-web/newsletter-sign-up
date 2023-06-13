@@ -2,10 +2,9 @@
 import React, { useState } from 'react'
 import { useRef } from 'react'
 
-const Form = () => {
+const Form = ({email, setEmail, setFinish,  finish}) => {
     const emailInp = useRef()
 
-    const [email, setEmail] = useState('');
     const [isValidEmail, setIsValidEmail] = useState(true);
 
     const handleChange = (event) => {
@@ -27,6 +26,8 @@ const Form = () => {
         
         if (isValid) {
         // Perform further actions for a valid email
+        
+        setFinish(true)
         console.log('Email is valid:', email);
         } else {
             console.log("Email is invalid")
