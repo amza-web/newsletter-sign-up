@@ -70,7 +70,7 @@ h1{
     @apply lg:hover:bg-gradient-to-r lg:hover:from-pink-600 lg:hover:to-orange-600
   }
 }
-@media screen and (min-width: 1440px) and (min-width:1025px){
+@media screen and (min-width:1024px){
   body{
     background-color: #242742;
   }
