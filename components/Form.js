@@ -6,16 +6,20 @@ const Form = ({email, setEmail, setFinish,  finish}) => {
     const emailInp = useRef()
 
     const [isValidEmail, setIsValidEmail] = useState(true);
+    const [isSubmitted, setisSubmitted] = useState(false)
 
     const handleChange = (event) => {
         setEmail(event.target.value);
-        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-        const isValid = emailRegex.test(email);
-        setIsValidEmail(isValid);
+        if (isSubmitted) {
+            const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+            const isValid = emailRegex.test(email);
+            setIsValidEmail(isValid);
+        }
 
     };
 
     const handleSubmit = (event) => {
+        setisSubmitted(true)
         event.preventDefault();
         
         // Validate email using regular expression
@@ -33,6 +37,13 @@ const Form = ({email, setEmail, setFinish,  finish}) => {
             console.log("Email is invalid")
         }
     };
+    const getValidation = () => {
+        if (isValidEmail || emailInp.current.checkValidity() ) {
+            return 
+        } else {
+            return 'invalid'
+        }
+    }
     
     return (
         <form className='md:max-w-lg'  onSubmit={handleSubmit}>
